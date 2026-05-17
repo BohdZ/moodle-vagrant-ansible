@@ -1,0 +1,23 @@
+- name: Install MariaDB
+  apt:
+    name: mariadb-server
+    state: present
+
+- name: Start MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Create database
+  mysql_db:
+    name: moodle
+    state: present
+
+- name: Create user
+  mysql_user:
+    name: moodleuser
+    password: moodlepass
+    priv: "moodle.*:ALL"
+    host: "%"
+    state: present
