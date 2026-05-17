@@ -1,0 +1,23 @@
+- name: Download Moodle
+  get_url:
+    url: https://download.moodle.org/download.php/direct/stable404/moodle-latest-404.tgz
+    dest: /tmp/moodle.tgz
+
+- name: Extract Moodle
+  unarchive:
+    src: /tmp/moodle.tgz
+    dest: /var/www/
+    remote_src: yes
+
+- name: Create moodledata
+  file:
+    path: /var/www/moodledata
+    state: directory
+    mode: "0777"
+
+- name: Set permissions
+  file:
+    path: /var/www/moodle
+    owner: www-data
+    group: www-data
+    recurse: yes
