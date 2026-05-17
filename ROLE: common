@@ -1,0 +1,13 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install basic packages
+  apt:
+    name:
+      - curl
+      - wget
+      - unzip
+      - git
+      - python3-pymysql
+    state: present
